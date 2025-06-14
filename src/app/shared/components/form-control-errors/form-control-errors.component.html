@@ -1,0 +1,10 @@
+@if (hasErrors()){
+    <div class="d-flex flex-column m-2">
+        @for (error of controlErrors() | keyvalue; track $index) 
+        {
+            <div class="text-danger">
+                {{ getErrorMessage(error.key) }}
+            </div>
+        }
+    </div>
+}

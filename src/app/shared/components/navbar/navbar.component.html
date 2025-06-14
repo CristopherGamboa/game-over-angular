@@ -1,0 +1,16 @@
+<nav>
+    <ul class="nav">
+        @for (item of items; track item.name) {
+            <li class="link" [class.dropdown]="item.dropdown">
+                <a [routerLink]="item.url">{{item.name}}</a>
+                @if (item.dropdown) {
+                    <ul class="dropdown-menu">
+                        @for (item of item.dropdown; track item.name) {
+                            <li><a [routerLink]="item.url">{{item.name}}</a></li>
+                        }
+                    </ul>
+                }
+            </li>
+        }
+    </ul>
+</nav>

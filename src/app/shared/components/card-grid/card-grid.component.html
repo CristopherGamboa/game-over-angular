@@ -1,0 +1,5 @@
+<div class="card-grid">
+    @for (card of cards(); track card.title) {
+        <app-card [card]="card" />
+    }
+</div>

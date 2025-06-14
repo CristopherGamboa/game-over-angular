@@ -1,0 +1,117 @@
+<div class="container p-2">
+    <form id="register-form" [formGroup]="form" class="form-floating">
+        <h1 class="banner-title text-white fs-1">
+            Registro de usuario
+        </h1>   
+        <div class="row gx-0">
+            <div class="col-md-6 col-12 gx-2 form-floating ">
+                @let nameControl = form.get('name');
+                <input class="form-control mb-2" type="text" id="name" formControlName="name" >
+                <label for="name">Nombre:</label>
+                @if (nameControl && nameControl.errors && nameControl.touched && nameControl.invalid) {
+                    <app-form-control-errors [isControlTouched]="nameControl.touched" 
+                    [controlErrors]="nameControl.errors" />
+                }
+            </div>
+            <div class="col-md-6 col-12 gx-2 form-floating">
+                @let lastNameControl = form.get('lastName');
+                <input class="form-control mb-2" type="text" id="lastName" formControlName="lastName" >
+                <label class="form-label" for="lastName">Apellido:</label>
+                @if (lastNameControl && lastNameControl.errors != null && lastNameControl.touched && lastNameControl.invalid) {
+                    <app-form-control-errors [isControlTouched]="lastNameControl.touched" 
+                    [controlErrors]="lastNameControl.errors" />
+                }
+            </div>
+        </div>
+        
+        <div class="row gx-0">
+            <div class="col-md-6 col-12 gx-2 form-floating">
+                @let usernameControl = form.get('username');
+                <input class="form-control mb-2" type="text" id="username" formControlName="username" >
+                <label class="form-label" for="username">Nombre de usuario:</label>
+                @if (usernameControl && usernameControl.errors != null && usernameControl.touched && usernameControl.invalid) {
+                    <app-form-control-errors [isControlTouched]="usernameControl.touched" 
+                    [controlErrors]="usernameControl.errors" />
+                }
+            </div>
+            <div class="col-md-6 col-12 gx-2 form-floating">
+                @let emailControl = form.get('email');
+                <input class="form-control mb-2" type="email" id="email" formControlName="email" >
+                <label class="form-label" for="email">Correo electrónico:</label>
+                @if (emailControl && emailControl.errors != null && emailControl.touched && emailControl.invalid) {
+                    <app-form-control-errors [isControlTouched]="emailControl.touched" 
+                    [controlErrors]="emailControl.errors" />
+                }
+            </div>
+        </div>
+        
+        <div class="row gx-0">
+            <div class="col-md-6 col-12 gx-2 form-floating">
+                @let passwordControl = form.get('password');
+                <input class="form-control mb-2" type="password" id="password" formControlName="password" >
+                <label class="form-label" for="password">Contraseña:</label>
+                @if (passwordControl && passwordControl.errors != null && passwordControl.touched && passwordControl.invalid) {
+                    <app-form-control-errors [isControlTouched]="passwordControl.touched" 
+                    [controlErrors]="passwordControl.errors" />
+                }
+            </div>
+            <div class="col-md-6 col-12 gx-2 form-floating">
+                @let passwordConfirmationControl = form.get('passwordConfirmation');
+                <input class="form-control mb-2" type="password" id="passwordConfirmation" formControlName="passwordConfirmation" >
+                <label class="form-label" for="passwordConfirmation">Confirmar contraseña:</label>
+                @if (passwordConfirmationControl && passwordConfirmationControl.touched) {
+                    <app-form-control-errors [controlErrors]="form.errors" 
+                    [isControlTouched]="passwordConfirmationControl.touched" />
+                }
+            </div>
+        </div>
+        
+        <div class="row gx-0">
+            <div class="col-md-6 col-12 gx-2 form-floating">
+                @let birthdateControl = form.get('birthdate');
+                <input class="form-control mb-2" type="date" id="birthdate" formControlName="birthdate" >
+                <label class="" for="birthdate">Fecha de nacimiento:</label>
+                @if (birthdateControl && birthdateControl.errors != null && birthdateControl.touched && birthdateControl.invalid) {
+                    <app-form-control-errors [isControlTouched]="birthdateControl.touched" 
+                    [controlErrors]="birthdateControl.errors" />
+                }
+            </div>
+            <div class="col-md-6 col-12 gx-2 form-floating">
+                @let addressControl = form.get('address');
+                <input class="form-control mb-2" type="text" id="address" formControlName="address" >
+                <label class="form-label" for="address">Dirección:</label>
+                @if (addressControl && addressControl.errors != null && addressControl.touched && addressControl.invalid) {
+                    <app-form-control-errors [isControlTouched]="addressControl.touched" 
+                    [controlErrors]="addressControl.errors" />
+                }
+            </div>
+        </div>
+        
+        <div class="row p-2 gx-0">
+            <div class="col-12 col-md-6 mb-2 mb-md-0 d-grid pe-md-2">
+                <button type="button" class="btn btn-warning p-2 " (click)="form.reset()">
+                    L I M P I A R
+                </button>
+            </div>
+            <div class="col-12 col-md-6 d-grid ps-md-2">
+                <button type="submit" (click)="register()" class="btn btn-success p-2" [disabled]="!form.valid" >
+                    C O N F I R M A R
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<dialog class="bg-white p-5 border-0 rounded shadow-lg" #confirmationDialog>
+    <div class="p-5 gap-2 d-flex flex-column">
+        <h2 class="text-success">¡Usuario registrado exitosamente!</h2>
+        
+        <div class="d-flex flex-column align-items-center">
+            <p>Redirigendo a la página de inicio...</p>
+            <div class="spinner-border text-success" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        
+    </div>
+</dialog>
